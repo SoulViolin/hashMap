@@ -54,3 +54,13 @@ def hash_map_each(hash_map:HashMap, func: Callable[[str, int], None]) -> None:
 
     return
 
+def hash_algorithm(s:str) -> int:
+    current_value = 0
+
+    for char in s:
+        ascii_code = ord(char)
+        current_value += ascii_code
+        current_value *= 17
+        current_value %= 256
+
+    return current_value
