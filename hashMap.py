@@ -6,11 +6,25 @@ def hash_map_create():
     return []
 
 def hash_map_put(hash_map:HashMap, key:str, value:int) -> None:
+    """
+    >>> h = hash_map_create()
+    >>> hash_map_put(h, "k1", 1)
+    >>> hash_map_put(h, "k1", 3)
+    >>> hash_map_get(h, "k1")
+    3
+    """
     hash_map_del(hash_map, key)
     hash_map.append((key, value))
     return
 
 def hash_map_get(hash_map:HashMap, key:str) -> int|None:
+    """
+    >>> h = hash_map_create()
+    >>> hash_map_put(h, "k1", 1)
+    >>> hash_map_get(h, "k1")
+    1
+    >>> hash_map_get(h, "k2")
+    """
     for m_key, value in hash_map:
         if m_key == key:
             return value
