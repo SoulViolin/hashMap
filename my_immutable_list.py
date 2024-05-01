@@ -1,40 +1,8 @@
 from typing import Callable
 
-MyList = tuple[int, 'MyList|None']
+type MyList[X] = tuple[X, MyList[X]|None]
 
-# def my_list_put(my_list:MyList|None, key:str, value:int) -> MyList:
-#     """
-#     >>> l = my_list_put(None, "k1", 1)
-#     >>> l = my_list_put(l, "k1", 3)
-#     >>> my_list_get(l, "k1")
-#     3
-#     """
-
-# def my_list_get(my_list:MyList|None, key:str) -> int|None:
-#     """
-#     >>> l = my_list_put(None, "k1", 1)
-#     >>> my_list_get(l, "k1")
-#     1
-#     >>> my_list_get(l, "k2")
-#     """
-
-# def my_list_del(my_list:MyList|None, key:str) -> MyList|None:
-#     pass
-
-# def my_list_each(my_list:MyList|None, func: Callable[[str, int], None]) -> None:
-#     """
-#     >>> l = my_list_put(None, "k1", 1)
-#     >>> l = my_list_put(l, "k2", 2)
-#     >>> def my_func(key, value) -> None:
-#     ...     print(key, value)
-#     ...     return
-#     >>> my_list_each(l, my_func)
-#     k2 2
-#     k1 1
-#     """
-#     pass
-
-def my_list_head(my_list:MyList|None) -> int|None:
+def my_list_head[X](my_list:MyList[X]|None) -> X|None:
     """
     >>> my_list_head((1, (2, None)))
     1
@@ -133,7 +101,7 @@ def my_list_append(my_list: MyList|None, value) -> MyList|None:
     """
     return my_list_reverse(my_list_prepend(my_list_reverse(my_list), value))
 
-def my_list_each(my_list: MyList|None, func: Callable[[int], None]) -> None:
+def my_list_each[X](my_list: MyList[X]|None, func: Callable[[X], None]) -> None:
     """
     >>> my_list_each((1, (2, None)), print)
     1
@@ -144,7 +112,7 @@ def my_list_each(my_list: MyList|None, func: Callable[[int], None]) -> None:
         head, my_list = my_list
         func(head)
 
-def my_list_del(my_list: MyList|None, func: Callable[[int], bool]) -> MyList|None:
+def my_list_del[X](my_list: MyList[X]|None, func: Callable[[X], bool]) -> MyList[X]|None:
     """
     >>> my_list_del((1, (2, None)), lambda x: x == 2)
     (1, None)
