@@ -126,3 +126,16 @@ def my_list_del[X](my_list: MyList[X]|None, func: Callable[[X], bool]) -> MyList
             new_list = (head, new_list)
 
     return my_list_reverse(new_list)
+
+def my_list_find[X](my_list: MyList[X]|None, func: Callable[[X], bool]) -> X|None:
+    """
+    >>> my_list_find((1, (2, None)), lambda x: x == 2)
+    2
+    >>> my_list_find((1, (2, None)), lambda x: True)
+    1
+    >>> my_list_find((1, (2, None)), lambda x: False)
+    """
+    while my_list is not None:
+        head, my_list = my_list
+        if func(head):
+            return head
