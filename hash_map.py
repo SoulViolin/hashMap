@@ -1,6 +1,5 @@
-
 from typing import Callable
-from my_list import MyList, my_list_create, my_list_put, my_list_get, my_list_del, my_list_each
+from my_linked_list import MyList, my_list_put, my_list_get, my_list_del, my_list_each
 
 # HashMap = list[MyList]
 HashMap = list[MyList|None]
@@ -38,12 +37,7 @@ def hash_map_put(hash_map:HashMap, key:str, value:int) -> None:
     3
     """
     index = hash_algorithm(key) % len(hash_map)
-    x = hash_map[index]
-
-    if x is None:
-        hash_map[index] = x = my_list_create()
-
-    my_list_put(x, key, value)
+    hash_map[index] = my_list_put(hash_map[index], key, value)
 
 def hash_map_get(hash_map:HashMap, key:str) -> int|None:
     """
